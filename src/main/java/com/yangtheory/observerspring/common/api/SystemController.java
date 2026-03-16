@@ -1,4 +1,4 @@
-package com.yangtheory.observerspring.api;
+package com.yangtheory.observerspring.common.api;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class ApiController {
+public class SystemController {
 
     @GetMapping("/health")
     public Map<String, Object> health() {
@@ -24,7 +24,14 @@ public class ApiController {
     public Map<String, Object> info() {
         return Map.of(
                 "name", "Observer API",
-                "message", "React frontend and Spring Boot backend are ready.",
-                "endpoints", List.of("/api/health", "/actuator/health"));
+                "message", "React frontend, Spring Boot dashboard API, and Minecraft snapshot ingest are ready.",
+                "endpoints", List.of(
+                        "/api/health",
+                        "/api/players",
+                        "/api/players/{name}/surroundings",
+                        "/api/logs",
+                        "/api/player-snapshots",
+                        "/actuator/health"
+                ));
     }
 }

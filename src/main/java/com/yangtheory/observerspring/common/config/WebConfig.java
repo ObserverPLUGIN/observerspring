@@ -1,4 +1,4 @@
-package com.yangtheory.observerspring.config;
+package com.yangtheory.observerspring.common.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
