@@ -26,6 +26,12 @@ public class SystemController {
                 "name", "Observer API",
                 "message", "React frontend, Spring Boot dashboard API, and Minecraft snapshot ingest are ready.",
                 "endpoints", List.of(
+                        "/api/auth/register",
+                        "/api/auth/login",
+                        "/api/auth/email/request",
+                        "/api/auth/email/verify",
+                        "/api/auth/password-reset/request",
+                        "/api/auth/password-reset/confirm",
                         "/api/health",
                         "/api/players",
                         "/api/players/{name}/surroundings",
