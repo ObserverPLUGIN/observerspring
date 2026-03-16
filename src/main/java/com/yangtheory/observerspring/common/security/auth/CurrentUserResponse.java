@@ -1,10 +1,9 @@
 package com.yangtheory.observerspring.common.security.auth;
 
-public record AuthenticationResponse(
-        String accessToken,
-        String tokenType,
+public record CurrentUserResponse(
         String username,
+        String email,
         String displayName,
-        String email
+        String role
 ) {
 }

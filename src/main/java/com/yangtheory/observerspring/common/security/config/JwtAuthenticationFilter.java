@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        if (request.getServletPath().startsWith("/api/auth")) {
+        if (isPublicAuthenticationPath(request.getServletPath())) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -66,5 +66,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isPublicAuthenticationPath(String servletPath) {
+        return "/api/auth/register".equals(servletPath)
+                || "/api/auth/login".equals(servletPath)
+                || "/api/auth/email/request".equals(servletPath)
+                || "/api/auth/email/verify".equals(servletPath)
+                || "/api/auth/password-reset/request".equals(servletPath)
+                || "/api/auth/password-reset/confirm".equals(servletPath);
     }
 }
