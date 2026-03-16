@@ -53,6 +53,10 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
+                        .requestMatchers(request ->
+                                HttpMethod.GET.matches(request.getMethod())
+                                        && !request.getServletPath().startsWith("/api")
+                        ).permitAll()
                         .requestMatchers(WHITE_LIST_URL).permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/player-snapshots").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/logs").permitAll()
@@ -76,7 +80,13 @@ public class SecurityConfiguration {
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
                 "http://localhost:4173",
-                "http://127.0.0.1:4173"
+                "http://127.0.0.1:4173",
+                "http://yangtheory.site",
+                "https://yangtheory.site",
+                "http://yangtheory.site:5173",
+                "https://yangtheory.site:5173",
+                "http://yangtheory.site:8080",
+                "https://yangtheory.site:8080"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type", "Cache-Control"));
